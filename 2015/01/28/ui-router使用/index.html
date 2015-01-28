@@ -93,7 +93,7 @@ ui-router只关注状态。一个状态对应一个页面位置
     </p>
   <p class="article-time">
     <time datetime="2015-01-28T08:31:12.000Z" itemprop="datePublished">1月 28 2015</time>
-    更新日期:<time datetime="2015-01-28T08:58:44.000Z" itemprop="dateModified">1月 28 2015</time>
+    更新日期:<time datetime="2015-01-28T09:00:48.000Z" itemprop="dateModified">1月 28 2015</time>
     
   </p>
 </header>
@@ -120,30 +120,24 @@ ui-router只关注状态。一个状态对应一个页面位置
 <h3 id="激活状态的三种方式">激活状态的三种方式</h3>
 <blockquote>
 <ul>
-<li>调用$state.go()方法，这是一个高级的便利方法；<pre><code>  不带参数：
-  <span class="variable">$state</span>.go(<span class="string">'contacts.details'</span>）;
-  带参数:
-   <span class="variable">$state</span>.go(<span class="string">'contacts.details'</span>, { contactId: randId });
-</code></pre></li>
-<li>点击包含ui-sref指令的链接；<pre><code>  不带参数：
-</code></pre></li>
+<li>调用$state.go()方法，这是一个高级的便利方法；</li>
 </ul>
 </blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">ui-sref</span>=<span class="value">"contacts.detail"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<pre><code>    带参数：
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">ui-sref</span>=<span class="value">"contacts.detail({contactId:contact.id})"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">不带参数：</div><div class="line"><span class="variable">$state</span>.go(<span class="string">'contacts.details'</span>）;</div><div class="line">带参数:</div><div class="line"> <span class="variable">$state</span>.go(<span class="string">'contacts.details'</span>, { contactId: randId });</div></pre></td></tr></table></figure>
 
 <blockquote>
 <ul>
-<li>导航到与状态相关联的 url<pre><code>   不带参数：
-</code></pre></li>
+<li>点击包含ui-sref指令的链接；</li>
 </ul>
 </blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="operator">a</span> href = <span class="string">"contacts"</span>&gt;&lt;/<span class="operator">a</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">不带参数：</div><div class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">ui-sref</span>=<span class="value">"contacts.detail"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">带参数：</div><div class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">ui-sref</span>=<span class="value">"contacts.detail({contactId:contact.id})"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<pre><code>     带参数：
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="operator">a</span> href = <span class="string">"contacts/{contact.id}"</span>&gt;&lt;/<span class="operator">a</span>&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>导航到与状态相关联的 url</li>
+</ul>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">不带参数：</div><div class="line">&lt;<span class="operator">a</span> href = <span class="string">"contacts"</span>&gt;&lt;/<span class="operator">a</span>&gt;</div><div class="line">带参数：</div><div class="line">&lt;<span class="operator">a</span> href = <span class="string">"contacts/{contact.id}"</span>&gt;&lt;/<span class="operator">a</span>&gt;</div></pre></td></tr></table></figure>
 
 
 
