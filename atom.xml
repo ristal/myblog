@@ -4,7 +4,7 @@
   <subtitle><![CDATA[程序媛，爱生活，爱汉服，爱武侠]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ristal90.info/"/>
-  <updated>2015-01-28T09:59:45.426Z</updated>
+  <updated>2015-01-28T10:02:07.028Z</updated>
   <id>http://ristal90.info/</id>
   
   <author>
@@ -42,7 +42,7 @@
     <link href="http://ristal90.info/2015/01/28/ui-router%E4%BD%BF%E7%94%A8/"/>
     <id>http://ristal90.info/2015/01/28/ui-router使用/</id>
     <published>2015-01-28T08:31:12.000Z</published>
-    <updated>2015-01-28T09:59:36.000Z</updated>
+    <updated>2015-01-28T10:01:37.000Z</updated>
     <content type="html"><![CDATA[<p> AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。</p>
 <p> 最好用的当然就是嵌套作用域啦，实际复杂点的项目都会用到，属于用上了就不想换的。</p>
 <p> ui-router只关注状态。一个状态对应一个页面位置</p>
@@ -86,7 +86,7 @@
 <p>参数itemId可以在ItemCtrl中通过<strong>$stateParams</strong>获取</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.controller(<span class="string">'ItemCtrl'</span>,[<span class="string">'$rootScope'</span>,<span class="string">'$scope'</span>,<span class="string">'$stateParams'</span>, <span class="string">'itemFactory'</span>,<span class="function"><span class="keyword">function</span> <span class="params">(<span class="variable">$rootScope</span>, <span class="variable">$scope</span>,<span class="variable">$stateParams</span>,projectFactory)</span> </span>{</div><div class="line"></div><div class="line">       <span class="variable">$scope</span>.item;</div><div class="line">       getItem(<span class="variable">$stateParams</span>.itemId);</div><div class="line"></div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">getItem</span><span class="params">(itemId)</span></span>{</div><div class="line">           itemFactory.getItem(itemId)</div><div class="line">               .success(<span class="function"><span class="keyword">function</span> <span class="params">(item)</span> </span>{</div><div class="line">                   <span class="variable">$scope</span>.item = item;</div><div class="line">               })</div><div class="line">               .error(<span class="function"><span class="keyword">function</span><span class="params">(error)</span> </span>{</div><div class="line">                   <span class="variable">$scope</span>.status = <span class="string">'Unable to get item: '</span> + error.message;</div><div class="line">               });</div><div class="line">       }</div><div class="line">   }])</div></pre></td></tr></table></figure>
 
-<h3 id="详细请参考:ui-router_系列文章索引">详细请参考:<a href="http://bubkoo.com/2014/01/02/angular/ui-router/guide/index/" target="_blank" rel="external">ui-router 系列文章索引</a></h3>
+<p><strong>详细请参考:</strong><a href="http://bubkoo.com/2014/01/02/angular/ui-router/guide/index/" target="_blank" rel="external">ui-router 系列文章索引</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p> AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。</p>
