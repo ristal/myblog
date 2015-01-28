@@ -4,7 +4,7 @@
   <subtitle><![CDATA[程序媛，爱生活，爱汉服，爱武侠]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ristal90.info/"/>
-  <updated>2015-01-28T08:18:03.734Z</updated>
+  <updated>2015-01-28T08:24:59.594Z</updated>
   <id>http://ristal90.info/</id>
   
   <author>
@@ -13,6 +13,42 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[AboutMe]]></title>
+    <link href="http://ristal90.info/2015/01/28/AboutMe/"/>
+    <id>http://ristal90.info/2015/01/28/AboutMe/</id>
+    <published>2015-01-28T08:23:51.000Z</published>
+    <updated>2015-01-28T08:24:26.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="关于我，身不高体不重">关于我，身不高体不重</h3>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="关于我，身不高体不重">关于我，身不高体不重</h3>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[偷得浮生数月闲之一个人的西塘]]></title>
+    <link href="http://ristal90.info/2015/01/28/%E5%81%B7%E5%BE%97%E6%B5%AE%E7%94%9F%E6%95%B0%E6%9C%88%E9%97%B2%E4%B9%8B%E4%B8%80%E4%B8%AA%E4%BA%BA%E7%9A%84%E8%A5%BF%E5%A1%98-1/"/>
+    <id>http://ristal90.info/2015/01/28/偷得浮生数月闲之一个人的西塘-1/</id>
+    <published>2015-01-28T08:22:29.000Z</published>
+    <updated>2015-01-28T08:23:12.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="没人陪一个人去的">没人陪一个人去的</h2>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="没人陪一个人去的">没人陪一个人去的</h2>
+]]>
+    </summary>
+    
+      <category term="汉服" scheme="http://ristal90.info/tags/%E6%B1%89%E6%9C%8D/"/>
+    
+      <category term="传统文化" scheme="http://ristal90.info/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/"/>
+    
+      <category term="汉服生活" scheme="http://ristal90.info/categories/%E6%B1%89%E6%9C%8D%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[偷得浮生数月闲之横店三人行]]></title>
@@ -32,73 +68,6 @@
       <category term="传统文化" scheme="http://ristal90.info/tags/%E4%BC%A0%E7%BB%9F%E6%96%87%E5%8C%96/"/>
     
       <category term="汉服生活" scheme="http://ristal90.info/categories/%E6%B1%89%E6%9C%8D%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[]]></title>
-    <link href="http://ristal90.info/2015/01/28/%E5%81%B7%E5%BE%97%E6%B5%AE%E7%94%9F%E6%95%B0%E6%9C%88%E9%97%B2%E4%B9%8B%E4%B8%80%E4%B8%AA%E4%BA%BA%E7%9A%84%E8%A5%BF%E5%A1%98/"/>
-    <id>http://ristal90.info/2015/01/28/偷得浮生数月闲之一个人的西塘/</id>
-    <published>2015-01-28T08:01:17.000Z</published>
-    <updated>2015-01-28T08:15:25.000Z</updated>
-    <content type="html"><![CDATA[<p>title: 偷得浮生数月闲之一个人的西塘<br>date: 2015-01-28 15:50:22<br>tags: </p>
-<ul>
-<li>汉服</li>
-<li>传统文化<br>categories：汉服生活</li>
-</ul>
-<hr>
-<h2 id="没人陪只好一个人去">没人陪只好一个人去</h2>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>title: 偷得浮生数月闲之一个人的西塘<br>date: 2015-01-28 15:50:22<br>tags: </p>
-<ul>
-<li>汉服</li>
-<li>传统文化<br>categories：汉服生活</li>
-</ul>
-<hr>
-<h2 id="没人陪]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Me]]></title>
-    <link href="http://ristal90.info/2015/01/28/Me/"/>
-    <id>http://ristal90.info/2015/01/28/Me/</id>
-    <published>2015-01-28T07:52:27.000Z</published>
-    <updated>2015-01-28T07:54:24.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="关于我">关于我</h2>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="关于我">关于我</h2>
-]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[]]></title>
-    <link href="http://ristal90.info/2015/01/28/%E5%81%B7%E5%BE%97%E6%B5%AE%E7%94%9F%E6%95%B0%E6%9C%88%E9%97%B2%E4%B9%8B%E6%A8%AA%E5%BA%97%E4%B8%89%E4%BA%BA%E8%A1%8C/"/>
-    <id>http://ristal90.info/2015/01/28/偷得浮生数月闲之横店三人行/</id>
-    <published>2015-01-28T07:50:22.000Z</published>
-    <updated>2015-01-28T08:15:08.000Z</updated>
-    <content type="html"><![CDATA[<p>title: 偷得浮生数月闲之横店三人行<br>date: 2015-01-28 15:50:22<br>tags: </p>
-<ul>
-<li>汉服</li>
-<li>传统文化<br>categories：汉服生活</li>
-</ul>
-<hr>
-<h2 id="说好的横店">说好的横店</h2>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>title: 偷得浮生数月闲之横店三人行<br>date: 2015-01-28 15:50:22<br>tags: </p>
-<ul>
-<li>汉服</li>
-<li>传统文化<br>categories：汉服生活</li>
-</ul>
-<hr>
-<h2 id="说好的横]]>
-    </summary>
     
   </entry>
   
