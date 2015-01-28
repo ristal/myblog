@@ -4,7 +4,7 @@
   <subtitle><![CDATA[程序媛，爱生活，爱汉服，爱武侠]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ristal90.info/"/>
-  <updated>2015-01-28T02:17:02.262Z</updated>
+  <updated>2015-01-28T03:33:22.938Z</updated>
   <id>http://ristal90.info/</id>
   
   <author>
@@ -19,13 +19,15 @@
     <link href="http://ristal90.info/2015/01/27/nodejs%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/"/>
     <id>http://ristal90.info/2015/01/27/nodejs异步编程/</id>
     <published>2015-01-27T07:44:47.000Z</published>
-    <updated>2015-01-27T09:02:41.000Z</updated>
+    <updated>2015-01-28T03:08:58.000Z</updated>
     <content type="html"><![CDATA[]]></content>
     <summary type="html">
     <![CDATA[]]>
     </summary>
     
       <category term="nodejs" scheme="http://ristal90.info/tags/nodejs/"/>
+    
+      <category term="nodejs" scheme="http://ristal90.info/categories/nodejs/"/>
     
   </entry>
   
