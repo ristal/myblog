@@ -4,7 +4,7 @@
   <subtitle><![CDATA[程序媛，爱生活，爱汉服，爱武侠]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ristal90.info/"/>
-  <updated>2015-01-28T08:01:49.794Z</updated>
+  <updated>2015-01-28T08:15:35.100Z</updated>
   <id>http://ristal90.info/</id>
   
   <author>
@@ -19,22 +19,23 @@
     <link href="http://ristal90.info/2015/01/28/%E5%81%B7%E5%BE%97%E6%B5%AE%E7%94%9F%E6%95%B0%E6%9C%88%E9%97%B2%E4%B9%8B%E4%B8%80%E4%B8%AA%E4%BA%BA%E7%9A%84%E8%A5%BF%E5%A1%98/"/>
     <id>http://ristal90.info/2015/01/28/偷得浮生数月闲之一个人的西塘/</id>
     <published>2015-01-28T08:01:17.000Z</published>
-    <updated>2015-01-28T08:00:05.000Z</updated>
-    <content type="html"><![CDATA[<p>title: 汉服生活<br>date: 2015-01-28 15:50:22<br>tags: </p>
+    <updated>2015-01-28T08:15:25.000Z</updated>
+    <content type="html"><![CDATA[<p>title: 偷得浮生数月闲之一个人的西塘<br>date: 2015-01-28 15:50:22<br>tags: </p>
 <ul>
 <li>汉服</li>
 <li>传统文化<br>categories：汉服生活</li>
 </ul>
 <hr>
+<h2 id="没人陪只好一个人去">没人陪只好一个人去</h2>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>title: 汉服生活<br>date: 2015-01-28 15:50:22<br>tags: </p>
+    <![CDATA[<p>title: 偷得浮生数月闲之一个人的西塘<br>date: 2015-01-28 15:50:22<br>tags: </p>
 <ul>
 <li>汉服</li>
 <li>传统文化<br>categories：汉服生活</li>
 </ul>
 <hr>
-]]>
+<h2 id="没人陪]]>
     </summary>
     
   </entry>
@@ -59,22 +60,23 @@
     <link href="http://ristal90.info/2015/01/28/%E5%81%B7%E5%BE%97%E6%B5%AE%E7%94%9F%E6%95%B0%E6%9C%88%E9%97%B2%E4%B9%8B%E6%A8%AA%E5%BA%97%E4%B8%89%E4%BA%BA%E8%A1%8C/"/>
     <id>http://ristal90.info/2015/01/28/偷得浮生数月闲之横店三人行/</id>
     <published>2015-01-28T07:50:22.000Z</published>
-    <updated>2015-01-28T08:00:05.000Z</updated>
-    <content type="html"><![CDATA[<p>title: 汉服生活<br>date: 2015-01-28 15:50:22<br>tags: </p>
+    <updated>2015-01-28T08:15:08.000Z</updated>
+    <content type="html"><![CDATA[<p>title: 偷得浮生数月闲之横店三人行<br>date: 2015-01-28 15:50:22<br>tags: </p>
 <ul>
 <li>汉服</li>
 <li>传统文化<br>categories：汉服生活</li>
 </ul>
 <hr>
+<h2 id="说好的横店">说好的横店</h2>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>title: 汉服生活<br>date: 2015-01-28 15:50:22<br>tags: </p>
+    <![CDATA[<p>title: 偷得浮生数月闲之横店三人行<br>date: 2015-01-28 15:50:22<br>tags: </p>
 <ul>
 <li>汉服</li>
 <li>传统文化<br>categories：汉服生活</li>
 </ul>
 <hr>
-]]>
+<h2 id="说好的横]]>
     </summary>
     
   </entry>
@@ -84,10 +86,21 @@
     <link href="http://ristal90.info/2015/01/28/AngularJS%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <id>http://ristal90.info/2015/01/28/AngularJS学习总结/</id>
     <published>2015-01-28T07:48:27.000Z</published>
-    <updated>2015-01-28T07:55:16.000Z</updated>
-    <content type="html"><![CDATA[]]></content>
+    <updated>2015-01-28T08:13:35.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li><a href="http://ristal90/" target="_blank" rel="external">ui-router状态</a></li>
+<li><a href="http://blog.fens.me" target="_blank" rel="external">restful api</a></li>
+<li><a href="http://blog.fens.me" target="_blank" rel="external">angular cors跨域资源共享设置 和formdata设置</a></li>
+<li><a href="http://blog.fens.me" target="_blank" rel="external">angular-datatables</a></li>
+</ul>
+</blockquote>
+]]></content>
     <summary type="html">
-    <![CDATA[]]>
+    <![CDATA[<blockquote>
+<ul>
+<li><a href="http://ristal90/" target="_blank" rel="external">ui-router状态</a></li>
+<li><a href="http://blog.fens.me" targe]]>
     </summary>
     
       <category term="AngularJs" scheme="http://ristal90.info/tags/AngularJs/"/>
