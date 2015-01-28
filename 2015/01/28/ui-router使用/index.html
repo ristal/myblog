@@ -93,7 +93,7 @@ ui-router只关注状态。一个状态对应一个页面位置
     </p>
   <p class="article-time">
     <time datetime="2015-01-28T08:31:12.000Z" itemprop="datePublished">1月 28 2015</time>
-    更新日期:<time datetime="2015-01-28T09:00:48.000Z" itemprop="dateModified">1月 28 2015</time>
+    更新日期:<time datetime="2015-01-28T09:50:39.000Z" itemprop="dateModified">1月 28 2015</time>
     
   </p>
 </header>
@@ -102,7 +102,7 @@ ui-router只关注状态。一个状态对应一个页面位置
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。"><span class="toc-number">1.</span> <span class="toc-text">AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最好用的当然就是嵌套作用域啦，实际复杂点的项目都会用到，属于用上了就不想换的。"><span class="toc-number">2.</span> <span class="toc-text">最好用的当然就是嵌套作用域啦，实际复杂点的项目都会用到，属于用上了就不想换的。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ui-router只关注状态。一个状态对应一个页面位置"><span class="toc-number">3.</span> <span class="toc-text">ui-router只关注状态。一个状态对应一个页面位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最常用的形式"><span class="toc-number">4.</span> <span class="toc-text">最常用的形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重点_模板将被插入到哪里？"><span class="toc-number">5.</span> <span class="toc-text">重点 模板将被插入到哪里？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活状态的三种方式"><span class="toc-number">6.</span> <span class="toc-text">激活状态的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#详细请参考:ui-router_系列文章索引"><span class="toc-number">7.</span> <span class="toc-text">详细请参考:ui-router 系列文章索引</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。"><span class="toc-number">1.</span> <span class="toc-text">AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最好用的当然就是嵌套作用域啦，实际复杂点的项目都会用到，属于用上了就不想换的。"><span class="toc-number">2.</span> <span class="toc-text">最好用的当然就是嵌套作用域啦，实际复杂点的项目都会用到，属于用上了就不想换的。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ui-router只关注状态。一个状态对应一个页面位置"><span class="toc-number">3.</span> <span class="toc-text">ui-router只关注状态。一个状态对应一个页面位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最常用的形式"><span class="toc-number">4.</span> <span class="toc-text">最常用的形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重点_模板将被插入到哪里？"><span class="toc-number">5.</span> <span class="toc-text">重点 模板将被插入到哪里？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活状态的三种方式"><span class="toc-number">6.</span> <span class="toc-text">激活状态的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#当然，以上是最简单的情况啦。如果都这么简单完全没必要用ui-router啦。最经常用到的就是状态嵌套，我用的是点标记法，最直观最清楚"><span class="toc-number">7.</span> <span class="toc-text">当然，以上是最简单的情况啦。如果都这么简单完全没必要用ui-router啦。最经常用到的就是状态嵌套，我用的是点标记法，最直观最清楚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数itemId可以在ItemCtrl中通过$stateParams获取"><span class="toc-number">8.</span> <span class="toc-text">参数itemId可以在ItemCtrl中通过$stateParams获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#详细请参考:ui-router_系列文章索引"><span class="toc-number">9.</span> <span class="toc-text">详细请参考:ui-router 系列文章索引</span></a></li></ol>
 		</div>
 		
 		<h3 id="AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。">AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。</h3>
@@ -140,6 +140,11 @@ ui-router只关注状态。一个状态对应一个页面位置
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">不带参数：</div><div class="line">&lt;<span class="operator">a</span> href = <span class="string">"contacts"</span>&gt;&lt;/<span class="operator">a</span>&gt;</div><div class="line">带参数：</div><div class="line">&lt;<span class="operator">a</span> href = <span class="string">"contacts/{contact.id}"</span>&gt;&lt;/<span class="operator">a</span>&gt;</div></pre></td></tr></table></figure>
 
 
+<h3 id="当然，以上是最简单的情况啦。如果都这么简单完全没必要用ui-router啦。最经常用到的就是状态嵌套，我用的是点标记法，最直观最清楚">当然，以上是最简单的情况啦。如果都这么简单完全没必要用ui-router啦。最经常用到的就是状态嵌套，我用的是点标记法，最直观最清楚</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$stateProvider</span></div><div class="line">  .<span class="keyword">state</span>(<span class="string">'contacts'</span>, {})</div><div class="line">  .<span class="keyword">state</span>(<span class="string">'contacts.item'</span>, {</div><div class="line">                  url:<span class="string">'item/:itemId'</span>,</div><div class="line">                  templateUrl: <span class="string">'item.html'</span>,</div><div class="line">                  controller:<span class="string">'ItemCtrl'</span></div><div class="line">              })</div></pre></td></tr></table></figure>
+
+<h3 id="参数itemId可以在ItemCtrl中通过$stateParams获取">参数itemId可以在ItemCtrl中通过$stateParams获取</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.controller(<span class="string">'ItemCtrl'</span>,[<span class="string">'$rootScope'</span>,<span class="string">'$scope'</span>,<span class="string">'$stateParams'</span>, <span class="string">'itemFactory'</span>,<span class="function"><span class="keyword">function</span> <span class="params">(<span class="variable">$rootScope</span>, <span class="variable">$scope</span>,<span class="variable">$stateParams</span>,projectFactory)</span> </span>{</div><div class="line"></div><div class="line">       <span class="variable">$scope</span>.item;</div><div class="line">       getItem(<span class="variable">$stateParams</span>.itemId);</div><div class="line"></div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">getItem</span><span class="params">(itemId)</span></span>{</div><div class="line">           itemFactory.getItem(itemId)</div><div class="line">               .success(<span class="function"><span class="keyword">function</span> <span class="params">(item)</span> </span>{</div><div class="line">                   <span class="variable">$scope</span>.item = item;</div><div class="line">               })</div><div class="line">               .error(<span class="function"><span class="keyword">function</span><span class="params">(error)</span> </span>{</div><div class="line">                   <span class="variable">$scope</span>.status = <span class="string">'Unable to get item: '</span> + error.message;</div><div class="line">               });</div><div class="line">       }</div><div class="line">   }])</div></pre></td></tr></table></figure>
 
 <h3 id="详细请参考:ui-router_系列文章索引">详细请参考:<a href="http://bubkoo.com/2014/01/02/angular/ui-router/guide/index/" target="_blank" rel="external">ui-router 系列文章索引</a></h3>
   
@@ -189,6 +194,14 @@ ui-router只关注状态。一个状态对应一个页面位置
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/01/28/angular-cors跨域资源共享设置/" title="angular_cors跨域资源共享设置">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  angular_cors跨域资源共享设置</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2015/01/28/AboutMe/"  title="AboutMe">
@@ -210,7 +223,7 @@ ui-router只关注状态。一个状态对应一个页面位置
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。"><span class="toc-number">1.</span> <span class="toc-text">AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最好用的当然就是嵌套作用域啦，实际复杂点的项目都会用到，属于用上了就不想换的。"><span class="toc-number">2.</span> <span class="toc-text">最好用的当然就是嵌套作用域啦，实际复杂点的项目都会用到，属于用上了就不想换的。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ui-router只关注状态。一个状态对应一个页面位置"><span class="toc-number">3.</span> <span class="toc-text">ui-router只关注状态。一个状态对应一个页面位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最常用的形式"><span class="toc-number">4.</span> <span class="toc-text">最常用的形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重点_模板将被插入到哪里？"><span class="toc-number">5.</span> <span class="toc-text">重点 模板将被插入到哪里？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活状态的三种方式"><span class="toc-number">6.</span> <span class="toc-text">激活状态的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#详细请参考:ui-router_系列文章索引"><span class="toc-number">7.</span> <span class="toc-text">详细请参考:ui-router 系列文章索引</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。"><span class="toc-number">1.</span> <span class="toc-text">AngularJS本身也提供router模块，但还是不如Angular-UI提供的ui-router好用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最好用的当然就是嵌套作用域啦，实际复杂点的项目都会用到，属于用上了就不想换的。"><span class="toc-number">2.</span> <span class="toc-text">最好用的当然就是嵌套作用域啦，实际复杂点的项目都会用到，属于用上了就不想换的。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ui-router只关注状态。一个状态对应一个页面位置"><span class="toc-number">3.</span> <span class="toc-text">ui-router只关注状态。一个状态对应一个页面位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最常用的形式"><span class="toc-number">4.</span> <span class="toc-text">最常用的形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重点_模板将被插入到哪里？"><span class="toc-number">5.</span> <span class="toc-text">重点 模板将被插入到哪里？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活状态的三种方式"><span class="toc-number">6.</span> <span class="toc-text">激活状态的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#当然，以上是最简单的情况啦。如果都这么简单完全没必要用ui-router啦。最经常用到的就是状态嵌套，我用的是点标记法，最直观最清楚"><span class="toc-number">7.</span> <span class="toc-text">当然，以上是最简单的情况啦。如果都这么简单完全没必要用ui-router啦。最经常用到的就是状态嵌套，我用的是点标记法，最直观最清楚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数itemId可以在ItemCtrl中通过$stateParams获取"><span class="toc-number">8.</span> <span class="toc-text">参数itemId可以在ItemCtrl中通过$stateParams获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#详细请参考:ui-router_系列文章索引"><span class="toc-number">9.</span> <span class="toc-text">详细请参考:ui-router 系列文章索引</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -222,7 +235,7 @@ ui-router只关注状态。一个状态对应一个页面位置
 	<p class="asidetitle">分类</p>
 		<ul>
 		
-			<li><a href="/categories/AngularJs/" title="AngularJs">AngularJs<sup>2</sup></a></li>
+			<li><a href="/categories/AngularJs/" title="AngularJs">AngularJs<sup>3</sup></a></li>
 		
 			<li><a href="/categories/nodejs/" title="nodejs">nodejs<sup>1</sup></a></li>
 		
@@ -239,9 +252,9 @@ ui-router只关注状态。一个状态对应一个页面位置
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>2</sup></a></li>
+			<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>3</sup></a></li>
 		
-			<li><a href="/tags/WEB前端/" title="WEB前端">WEB前端<sup>2</sup></a></li>
+			<li><a href="/tags/WEB前端/" title="WEB前端">WEB前端<sup>3</sup></a></li>
 		
 			<li><a href="/tags/nodejs/" title="nodejs">nodejs<sup>1</sup></a></li>
 		
