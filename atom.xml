@@ -4,7 +4,7 @@
   <subtitle><![CDATA[程序媛，爱生活，爱汉服，爱武侠]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ristal90.info/"/>
-  <updated>2015-01-28T07:41:40.599Z</updated>
+  <updated>2015-01-28T08:01:49.794Z</updated>
   <id>http://ristal90.info/</id>
   
   <author>
@@ -13,6 +13,90 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[]]></title>
+    <link href="http://ristal90.info/2015/01/28/%E5%81%B7%E5%BE%97%E6%B5%AE%E7%94%9F%E6%95%B0%E6%9C%88%E9%97%B2%E4%B9%8B%E4%B8%80%E4%B8%AA%E4%BA%BA%E7%9A%84%E8%A5%BF%E5%A1%98/"/>
+    <id>http://ristal90.info/2015/01/28/偷得浮生数月闲之一个人的西塘/</id>
+    <published>2015-01-28T08:01:17.000Z</published>
+    <updated>2015-01-28T08:00:05.000Z</updated>
+    <content type="html"><![CDATA[<p>title: 汉服生活<br>date: 2015-01-28 15:50:22<br>tags: </p>
+<ul>
+<li>汉服</li>
+<li>传统文化<br>categories：汉服生活</li>
+</ul>
+<hr>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>title: 汉服生活<br>date: 2015-01-28 15:50:22<br>tags: </p>
+<ul>
+<li>汉服</li>
+<li>传统文化<br>categories：汉服生活</li>
+</ul>
+<hr>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Me]]></title>
+    <link href="http://ristal90.info/2015/01/28/Me/"/>
+    <id>http://ristal90.info/2015/01/28/Me/</id>
+    <published>2015-01-28T07:52:27.000Z</published>
+    <updated>2015-01-28T07:54:24.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="关于我">关于我</h2>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="关于我">关于我</h2>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[]]></title>
+    <link href="http://ristal90.info/2015/01/28/%E5%81%B7%E5%BE%97%E6%B5%AE%E7%94%9F%E6%95%B0%E6%9C%88%E9%97%B2%E4%B9%8B%E6%A8%AA%E5%BA%97%E4%B8%89%E4%BA%BA%E8%A1%8C/"/>
+    <id>http://ristal90.info/2015/01/28/偷得浮生数月闲之横店三人行/</id>
+    <published>2015-01-28T07:50:22.000Z</published>
+    <updated>2015-01-28T08:00:05.000Z</updated>
+    <content type="html"><![CDATA[<p>title: 汉服生活<br>date: 2015-01-28 15:50:22<br>tags: </p>
+<ul>
+<li>汉服</li>
+<li>传统文化<br>categories：汉服生活</li>
+</ul>
+<hr>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>title: 汉服生活<br>date: 2015-01-28 15:50:22<br>tags: </p>
+<ul>
+<li>汉服</li>
+<li>传统文化<br>categories：汉服生活</li>
+</ul>
+<hr>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[AngularJS学习总结]]></title>
+    <link href="http://ristal90.info/2015/01/28/AngularJS%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <id>http://ristal90.info/2015/01/28/AngularJS学习总结/</id>
+    <published>2015-01-28T07:48:27.000Z</published>
+    <updated>2015-01-28T07:55:16.000Z</updated>
+    <content type="html"><![CDATA[]]></content>
+    <summary type="html">
+    <![CDATA[]]>
+    </summary>
+    
+      <category term="AngularJs" scheme="http://ristal90.info/tags/AngularJs/"/>
+    
+      <category term="WEB前端" scheme="http://ristal90.info/tags/WEB%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="AngularJs" scheme="http://ristal90.info/categories/AngularJs/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[nodejs异步编程]]></title>
@@ -36,7 +120,7 @@
     <link href="http://ristal90.info/2015/01/23/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
     <id>http://ristal90.info/2015/01/23/新的开始/</id>
     <published>2015-01-23T09:36:34.000Z</published>
-    <updated>2015-01-23T10:12:19.000Z</updated>
+    <updated>2015-01-28T07:54:52.000Z</updated>
     <content type="html"><![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
 <p>通过下面的命令，就可以创建新文章</p>
 <figure class="highlight {bash}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">D:<span class="command">\workspace</span><span class="command">\javascript</span><span class="command">\mynodejs</span>-hexo&gt;hexo new 新的开始</div><div class="line"><span class="special">[</span>info<span class="special">]</span> File created at D:<span class="command">\workspace</span><span class="command">\javascript</span><span class="command">\mynodejs</span>-hexo<span class="command">\source</span><span class="command">\_</span>posts<span class="command">\新</span>的开始.md</div></pre></td></tr></table></figure>
