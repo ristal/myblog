@@ -4,7 +4,7 @@
   <subtitle><![CDATA[程序媛，爱生活，爱汉服，爱武侠]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ristal90.info/"/>
-  <updated>2015-01-30T09:55:54.104Z</updated>
+  <updated>2015-01-30T10:19:13.035Z</updated>
   <id>http://ristal90.info/</id>
   
   <author>
@@ -434,6 +434,49 @@
     <summary type="html">
     <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
     </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[js作用域及作用域链]]></title>
+    <link href="http://ristal90.info/2014/08/30/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%8F%8A%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/"/>
+    <id>http://ristal90.info/2014/08/30/js作用域及作用域链/</id>
+    <published>2014-08-30T10:11:32.000Z</published>
+    <updated>2015-01-30T10:19:03.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="函数作用域">函数作用域</h2>
+<p>所谓函数作用域就是说：-》变量在声明它们的函数体以及这个函数体嵌套的任意函数体内都是有定义的。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scope=<span class="string">"global"</span>;    </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span><span class="params">()</span></span>{    </div><div class="line">    <span class="built_in">console</span>.log(scope);    </div><div class="line">    <span class="keyword">var</span> scope=<span class="string">"local"</span>    </div><div class="line">    <span class="built_in">console</span>.log(scope);    </div><div class="line">}    </div><div class="line">t();</div></pre></td></tr></table></figure>
+
+<p>第一句输出的是： “undefined”，而不是 “global”，因为js采用函数作用域,scope在函数t中重新声明了，则在整个函数t中都有效，覆盖了全局的声明，但第一句时还未赋值，所以是undefined<br>第二句输出的是：”local”<br>等价代码：这样看最清楚</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scope=<span class="string">"global"</span>;    </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span><span class="params">()</span></span>{    </div><div class="line">    <span class="keyword">var</span> scope;    </div><div class="line">    <span class="built_in">console</span>.log(scope);    </div><div class="line">    scope=<span class="string">"local"</span>    </div><div class="line">    <span class="built_in">console</span>.log(scope);    </div><div class="line">}    </div><div class="line">t();</div></pre></td></tr></table></figure>
+
+<h2 id="变量作用域">变量作用域</h2>
+<p>Js中没有用var声明的变量都是全局变量，而且是顶层对象的属性。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span><span class="params">(flag)</span></span>{  </div><div class="line">    <span class="keyword">if</span>(flag){  </div><div class="line">        s=<span class="string">"ifscope"</span>;  </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)   </div><div class="line">            ;  </div><div class="line">    }  </div><div class="line">    <span class="built_in">console</span>.log(i);  </div><div class="line">}  </div><div class="line">t(<span class="literal">true</span>);  </div><div class="line"><span class="built_in">console</span>.log(s);</div></pre></td></tr></table></figure>
+
+<p>会输出：”ifscope”，用console.log(window.s)也是会输出“ifscope”<br>当使用var声明一个变量时，创建的这个属性是不可配置的，也就是说无法通过delete运算符删除</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="reserved">var</span> name=<span class="number">1</span><span class="function">    -&gt;</span>不可删除</div><div class="line">sex=”girl“<span class="function">         -&gt;</span>可删除</div><div class="line"><span class="keyword">this</span>.age=<span class="number">22</span><span class="function">    -&gt;</span>可删除</div></pre></td></tr></table></figure>
+
+<h2 id="作用域链">作用域链</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">name=<span class="string">"lwy"</span>;    </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span><span class="params">()</span></span>{    </div><div class="line">    <span class="keyword">var</span> name=<span class="string">"tlwy"</span>;    </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">s</span><span class="params">()</span></span>{    </div><div class="line">        <span class="keyword">var</span> name=<span class="string">"slwy"</span>;    </div><div class="line">        <span class="built_in">console</span>.log(name);    </div><div class="line">    }    </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">ss</span><span class="params">()</span></span>{    </div><div class="line">        <span class="built_in">console</span>.log(name);    </div><div class="line">    }    </div><div class="line">    s();    </div><div class="line">    ss();    </div><div class="line">}    </div><div class="line">t();</div></pre></td></tr></table></figure>
+
+<p>结果：slwy tlwy<br>当执行s时，s() -&gt;t()-&gt;window 将创建函数s的执行环境(调用对象),并将该对象置于链表开头，然后将函数t的调用对象链接在之后，最后是全局对象。然后从链表开头寻找变量name,很明显name是”slwy”。<br>但执行ss()时，作用域链是： ss()-&gt;t()-&gt;window,所以name是”tlwy”</p>
+<h3 id="很容易错的例子：">很容易错的例子：</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">    </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">buttonInit</span><span class="params">()</span></span>{    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++){    </div><div class="line">        <span class="keyword">var</span> b=<span class="built_in">document</span>.getElementById(<span class="string">"button"</span>+i);    </div><div class="line">        b.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{ alert(<span class="string">"Button"</span>+i);},<span class="literal">false</span>);    </div><div class="line">    }    </div><div class="line">}    </div><div class="line"><span class="built_in">window</span>.onload=buttonInit;    </div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"button1"</span>&gt;</span>Button1<span class="tag">&lt;/<span class="title">button</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"button2"</span>&gt;</span>Button2<span class="tag">&lt;/<span class="title">button</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"button3"</span>&gt;</span>Button3<span class="tag">&lt;/<span class="title">button</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>当文档加载完毕，给几个按钮注册点击事件，当我们点击按钮时，会弹出什么提示框呢？<br>很容易犯错，三个按钮都是弹出：”Button4”,你答对了吗？<br>当注册事件结束后，i的值为4，当点击按钮时，事件函数即function(){ alert(“Button”+i);}这个匿名函数中没有i,根据作用域链，所以到buttonInit函数中找，此时i的值为4，所以弹出”button4“。  </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="函数作用域">函数作用域</h2>
+<p>所谓函数作用域就是说：-》变量在声明它们的函数体以及这个函数体嵌套的任意函数体内都是有定义的。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pr]]>
+    </summary>
+    
+      <category term="JavaScript" scheme="http://ristal90.info/tags/JavaScript/"/>
+    
+      <category term="WEB前端" scheme="http://ristal90.info/tags/WEB%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="JavaScript" scheme="http://ristal90.info/categories/JavaScript/"/>
     
   </entry>
   
