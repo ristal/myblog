@@ -7,19 +7,13 @@
     <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
     <meta charset="UTF-8">
   
-    <title>AngularJS学习总结 | 珠箔飘灯独自归</title>
+    <title>Angular_Scope_Inheritance | 珠箔飘灯独自归</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="ristal">
     
-    <meta name="description" content="ui-router状态
-restful api
-angular cors跨域资源共享设置 和formdata设置
-angular-datatables
-在WebStorm中集成Karma+jasmine进行前端单元测试
-
-
-AngularJS断断续续也用了差不多1年了，做项目大大小小也做了几个，真心">
+    <meta name="description" content="Angular Scope Inheritance
+The contenders:The following create new scopes, and inherit prototypically: ng-repeat, ng-include, ng-switch, ng-controller,">
     
     
     
@@ -88,15 +82,15 @@ AngularJS断断续续也用了差不多1年了，做项目大大小小也做了�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/28/AngularJS学习总结/" title="AngularJS学习总结" itemprop="url">AngularJS学习总结</a>
+      <a href="/2015/01/30/Angular-Scope-Inheritance/" title="Angular_Scope_Inheritance" itemprop="url">Angular_Scope_Inheritance</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://ristal90.info" title="ristal">ristal</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-28T07:48:27.000Z" itemprop="datePublished">1月 28 2015</time>
-    更新日期:<time datetime="2015-01-29T10:25:13.000Z" itemprop="dateModified">1月 29 2015</time>
+    <time datetime="2015-01-30T09:28:52.000Z" itemprop="datePublished">1月 30 2015</time>
+    更新日期:<time datetime="2015-01-30T09:43:10.000Z" itemprop="dateModified">1月 30 2015</time>
     
   </p>
 </header>
@@ -105,19 +99,21 @@ AngularJS断断续续也用了差不多1年了，做项目大大小小也做了�
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS断断续续也用了差不多1年了，做项目大大小小也做了几个，真心觉得还是不错哒，完爆以前的前端工作方式了。"><span class="toc-number">1.</span> <span class="toc-text">AngularJS断断续续也用了差不多1年了，做项目大大小小也做了几个，真心觉得还是不错哒，完爆以前的前端工作方式了。</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular_Scope_Inheritance"><span class="toc-number">1.</span> <span class="toc-text">Angular Scope Inheritance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#angular_作用域:"><span class="toc-number">2.</span> <span class="toc-text">angular 作用域:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决的办法"><span class="toc-number">3.</span> <span class="toc-text">解决的办法</span></a></li></ol>
 		</div>
 		
-		<blockquote>
-<ul>
-<li><a href="http://ristal90.info/2015/01/28/ui-router%E4%BD%BF%E7%94%A8/" target="_blank" rel="external">ui-router状态</a></li>
-<li><a href="http://blog.fens.me" target="_blank" rel="external">restful api</a></li>
-<li><a href="http://blog.fens.me" target="_blank" rel="external">angular cors跨域资源共享设置 和formdata设置</a></li>
-<li><a href="http://blog.fens.me" target="_blank" rel="external">angular-datatables</a></li>
-<li><a href="http://www.cnblogs.com/wbpmrck/p/Unit-Test-With-WebStorm-Karma-Jasmine-BDD-TDD.html" target="_blank" rel="external">在WebStorm中集成Karma+jasmine进行前端单元测试</a></li>
-</ul>
-</blockquote>
-<h3 id="AngularJS断断续续也用了差不多1年了，做项目大大小小也做了几个，真心觉得还是不错哒，完爆以前的前端工作方式了。">AngularJS断断续续也用了差不多1年了，做项目大大小小也做了几个，真心觉得还是不错哒，完爆以前的前端工作方式了。</h3>
+		<h2 id="Angular_Scope_Inheritance">Angular Scope Inheritance</h2>
+<p>The contenders:<br>The following create new scopes, and inherit prototypically: <strong>ng-repeat, ng-include, ng-switch, ng-controller, directive with scope: true, directive with transclude: true.</strong><br>The following creates a new scope which does not inherit prototypically: directive with scope: { … }. This creates an “isolate” scope instead.<br>Note, by default, directives do not create new scope — i.e., the default is scope: false.</p>
+<h2 id="angular_作用域:">angular 作用域:</h2>
+<p>ng-repeat, ng-switch, ng-view 和 ng-include 统统都创建了他们新的子 scopes，<br>所以在用到这些 directive 时也经常出问题</p>
+<h2 id="解决的办法">解决的办法</h2>
+<p>解决的办法就是不使用基本数据类型，而在 Model 里永远多加一个点.<br>使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">"text"</span> ng-model=<span class="string">"someObj.prop1"</span>&gt;</div></pre></td></tr></table></figure>
+
+<p>来替代</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">input</span> <span class="built_in">type</span>=<span class="string">"text"</span> ng-model=<span class="string">"prop1"</span>&gt;</div></pre></td></tr></table></figure>
+
+<p>但是我真的确实十分很非常需要使用 string number 等原始数据类型怎么办呢？2 个方法——<br>在子 Scope 中使用 $parent.parentPrimitive。 这将阻止子 Scope 创建它自己的属性。<br>在父 Scope 中定义一个函数，让子 Scope 调用，传递原始数据类型的参数给父亲，从而更新父 Scope 中的属性。（并不总是可行）</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -166,18 +162,18 @@ AngularJS断断续续也用了差不多1年了，做项目大大小小也做了�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/01/28/偷得浮生数月闲之横店三人行-1/" title="偷得浮生数月闲之横店三人行">
+ <a href="/2015/01/30/$$hashKey问题/" title="$$hashKey问题">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  偷得浮生数月闲之横店三人行</span>
+  $$hashKey问题</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/01/27/nodejs异步编程/"  title="nodejs异步编程">
+<a href="/2015/01/30/JavaScript的原型链继承/"  title="JavaScript的原型链继承">
  <strong>NEXT:</strong><br/> 
- <span>nodejs异步编程
+ <span>JavaScript的原型链继承
 </span>
 </a>
 </div>
@@ -194,7 +190,7 @@ AngularJS断断续续也用了差不多1年了，做项目大大小小也做了�
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS断断续续也用了差不多1年了，做项目大大小小也做了几个，真心觉得还是不错哒，完爆以前的前端工作方式了。"><span class="toc-number">1.</span> <span class="toc-text">AngularJS断断续续也用了差不多1年了，做项目大大小小也做了几个，真心觉得还是不错哒，完爆以前的前端工作方式了。</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular_Scope_Inheritance"><span class="toc-number">1.</span> <span class="toc-text">Angular Scope Inheritance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#angular_作用域:"><span class="toc-number">2.</span> <span class="toc-text">angular 作用域:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决的办法"><span class="toc-number">3.</span> <span class="toc-text">解决的办法</span></a></li></ol>
   </div>
 
 <div id="asidepart">

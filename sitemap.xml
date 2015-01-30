@@ -2,6 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ristal90.info/2015/01/30/$$hashKey%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2015-01-30T09:48:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ristal90.info/2015/01/30/Angular-Scope-Inheritance/</loc>
+    <lastmod>2015-01-30T09:43:10.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ristal90.info/2015/01/30/JavaScript%E7%9A%84%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF/</loc>
+    <lastmod>2015-01-30T09:27:30.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ristal90.info/2015/01/30/Node-js%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2015-01-30T08:45:14.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://ristal90.info/2015/01/29/angular-datatables%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2015-01-30T08:08:46.000Z</lastmod>
   </url>
