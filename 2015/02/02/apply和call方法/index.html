@@ -13,9 +13,8 @@
     <meta name="author" content="ristal">
     
     <meta name="description" content="apply用法一：函数的劫持与对象的复制
-对象的继承，大家一般的做法都是用复制方法：Object.extend
-prototype.js实现方法：
-123456Object.extend = function(destination, source) ...{    for (property in">
+对象的继承，大家一般的做法都是用复制方法：Object.extendprototype.js实现方法：
+123456Object.extend = function(destination, source) ...{    for (property in ">
     
     
     
@@ -92,7 +91,7 @@ prototype.js实现方法：
     </p>
   <p class="article-time">
     <time datetime="2015-02-02T08:55:40.000Z" itemprop="datePublished">2月 2 2015</time>
-    更新日期:<time datetime="2015-02-02T10:42:49.000Z" itemprop="dateModified">2月 2 2015</time>
+    更新日期:<time datetime="2015-02-02T10:44:46.000Z" itemprop="dateModified">2月 2 2015</time>
     
   </p>
 </header>
@@ -105,9 +104,8 @@ prototype.js实现方法：
 		</div>
 		
 		<h2 id="apply用法一：函数的劫持与对象的复制">apply用法一：函数的劫持与对象的复制</h2>
-<pre><code>对象的继承，大家一般的做法都是用复制方法：Object.<span class="built_in">extend</span>
-prototype.js实现方法：
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Object.extend = <span class="keyword">function</span>(destination, <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">  <span class="keyword">for</span> (property <span class="keyword">in</span> <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">    destination[property] = <span class="keyword">source</span>[property];  </div><div class="line">  }  </div><div class="line">  <span class="keyword">return</span> destination;  </div><div class="line">}</div></pre></td></tr></table></figure>
+<p>对象的继承，大家一般的做法都是用复制方法：Object.extend<br>prototype.js实现方法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Object.extend = <span class="keyword">function</span>(destination, <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">  <span class="keyword">for</span> (property <span class="keyword">in</span> <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">    destination[property] = <span class="keyword">source</span>[property];  </div><div class="line">  }  </div><div class="line">  <span class="keyword">return</span> destination;  </div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>还有种不太常见的方法就是Function.apply<br>apply 方法能劫持对象的方法， 继承对象的属性。<br>示例：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span>...</span>{   <span class="comment">//定义一个类，人类   </span></div><div class="line">    <span class="keyword">this</span>.name=name     <span class="comment">//名字   </span></div><div class="line">    <span class="keyword">this</span>.age=age       <span class="comment">//年龄  </span></div><div class="line">    <span class="keyword">this</span>.sayhello=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{alert(<span class="string">"hello"</span>)}  </div><div class="line">}  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span><span class="params">(name,age,grade,school)</span>...</span>{    <span class="comment">//学生类  </span></div><div class="line">    Person.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>)   </div><div class="line">    <span class="keyword">this</span>.grade=grade                  <span class="comment">//年级  </span></div><div class="line">    <span class="keyword">this</span>.school=school                    <span class="comment">//学校  </span></div><div class="line">}  </div><div class="line"><span class="keyword">var</span> p1=<span class="keyword">new</span> Person(<span class="string">"jake"</span>,<span class="number">10</span>)  </div><div class="line">p1.sayhello()  </div><div class="line"><span class="keyword">var</span> s1=<span class="keyword">new</span> Student(<span class="string">"tom"</span>,<span class="number">13</span>,<span class="number">6</span>,<span class="string">"清华小学"</span>)  </div><div class="line">s1.sayhello()</div></pre></td></tr></table></figure>
