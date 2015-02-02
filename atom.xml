@@ -4,7 +4,7 @@
   <subtitle><![CDATA[程序媛，爱生活，爱汉服，爱武侠]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ristal90.info/"/>
-  <updated>2015-01-30T10:19:57.464Z</updated>
+  <updated>2015-02-02T10:43:05.119Z</updated>
   <id>http://ristal90.info/</id>
   
   <author>
@@ -13,6 +13,63 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[apply和call方法]]></title>
+    <link href="http://ristal90.info/2015/02/02/apply%E5%92%8Ccall%E6%96%B9%E6%B3%95/"/>
+    <id>http://ristal90.info/2015/02/02/apply和call方法/</id>
+    <published>2015-02-02T08:55:40.000Z</published>
+    <updated>2015-02-02T10:42:49.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="apply用法一：函数的劫持与对象的复制">apply用法一：函数的劫持与对象的复制</h2>
+<pre><code>对象的继承，大家一般的做法都是用复制方法：Object.<span class="built_in">extend</span>
+prototype.js实现方法：
+</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Object.extend = <span class="keyword">function</span>(destination, <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">  <span class="keyword">for</span> (property <span class="keyword">in</span> <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">    destination[property] = <span class="keyword">source</span>[property];  </div><div class="line">  }  </div><div class="line">  <span class="keyword">return</span> destination;  </div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>还有种不太常见的方法就是Function.apply<br>apply 方法能劫持对象的方法， 继承对象的属性。<br>示例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span>...</span>{   <span class="comment">//定义一个类，人类   </span></div><div class="line">    <span class="keyword">this</span>.name=name     <span class="comment">//名字   </span></div><div class="line">    <span class="keyword">this</span>.age=age       <span class="comment">//年龄  </span></div><div class="line">    <span class="keyword">this</span>.sayhello=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{alert(<span class="string">"hello"</span>)}  </div><div class="line">}  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span><span class="params">(name,age,grade,school)</span>...</span>{    <span class="comment">//学生类  </span></div><div class="line">    Person.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>)   </div><div class="line">    <span class="keyword">this</span>.grade=grade                  <span class="comment">//年级  </span></div><div class="line">    <span class="keyword">this</span>.school=school                    <span class="comment">//学校  </span></div><div class="line">}  </div><div class="line"><span class="keyword">var</span> p1=<span class="keyword">new</span> Person(<span class="string">"jake"</span>,<span class="number">10</span>)  </div><div class="line">p1.sayhello()  </div><div class="line"><span class="keyword">var</span> s1=<span class="keyword">new</span> Student(<span class="string">"tom"</span>,<span class="number">13</span>,<span class="number">6</span>,<span class="string">"清华小学"</span>)  </div><div class="line">s1.sayhello()</div></pre></td></tr></table></figure>
+
+<p><strong>分析:</strong> Person.apply(this,arguments);<br>this:在创建对象在这个时候代表的是student<br>arguments:是一个类数组,也就是[“tom”,13,6,”一年级”];<br>通俗一点讲就是:Student劫持了Person的sayhello方法，继承了Person的属性。也就是用Student类去执行Person类里面的内容,在Person这个类里面存在this.name等之类的语句,这样就将属性创建到了student对象里面</p>
+<h2 id="call用法">call用法</h2>
+<p>在Studen函数里面可以将apply中修改成如下:<br>Person.call(this,name,age);</p>
+<h2 id="apply用法二（进阶用法）：利用Apply的参数数组化来提高性能">apply用法二（进阶用法）：利用Apply的参数数组化来提高性能</h2>
+<blockquote>
+<ul>
+<li>找出数组中最大的元素:Math.max()<br>Math.max后面可以接任意个参数，最后返回所有参数中的最大值</li>
+</ul>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">alert(<span class="built_in">Math</span>.max(<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">6</span>))   <span class="comment">//9</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">1</span>];</div><div class="line">alert(<span class="built_in">Math</span>.max(arr));<span class="comment">//NAN !array形式不行</span></div></pre></td></tr></table></figure>
+
+<p>我们一般这么写(或者说我一直是这么写的)：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMax</span><span class="params">(arr)</span></span>{</div><div class="line">    <span class="keyword">var</span> arrLen=arr.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,ret=arr[<span class="number">0</span>];i&lt;arrLen;i++){</div><div class="line">        ret=<span class="built_in">Math</span>.max(ret,arr[i]);        </div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>应用apply:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMax2</span><span class="params">(arr)</span></span>{</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,arr);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong> apply方法将数组形式的arr解析成一个个参数传递给max函数，第一个参数是null是因为不需要劫持方法和继承属性。</p>
+<blockquote>
+<ul>
+<li><p>同理Math.min.apply（null,arr）</p>
+</li>
+<li><p>数组合并Array.prototype.push(),返回长度</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">var</span> arr1=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>);  </div><div class="line">    <span class="keyword">var</span> arr2=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"5"</span>,<span class="string">"6"</span>);  </div><div class="line">    </div><div class="line"> <span class="comment">//   alert(arr1.push(arr2));/长度是4</span></div><div class="line"> <span class="comment">//   alert(arr1);//1,2,3,[5,6]// 错误</span></div><div class="line"></div><div class="line">一般我们只能循环push：</div><div class="line">    <span class="keyword">var</span> arrLen=arr2.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arrLen;i++){</div><div class="line">        arr1.push(arr2[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">apply：</div><div class="line">    alert(arr1.push.apply(arr2));<span class="comment">//2</span></div><div class="line">    alert(arr1);<span class="comment">//1,2,3,5,6 //正确</span></div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="apply用法一：函数的劫持与对象的复制">apply用法一：函数的劫持与对象的复制</h2>
+<pre><code>对象的继承，大家一般的做法都是用复制方法：Object.<span class="built_in">extend</span>
+prototyp]]>
+    </summary>
+    
+      <category term="JavaScript" scheme="http://ristal90.info/tags/JavaScript/"/>
+    
+      <category term="WEB前端" scheme="http://ristal90.info/tags/WEB%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="JavaScript" scheme="http://ristal90.info/categories/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[$$hashKey问题]]></title>
@@ -95,8 +152,8 @@
     <link href="http://ristal90.info/2015/01/30/Node-js%E5%B7%A5%E5%85%B7/"/>
     <id>http://ristal90.info/2015/01/30/Node-js工具/</id>
     <published>2015-01-30T08:41:09.000Z</published>
-    <updated>2015-01-30T08:45:14.000Z</updated>
-    <content type="html"><![CDATA[<p>Nodejs领域:</p>
+    <updated>2015-02-02T03:24:32.000Z</updated>
+    <content type="html"><![CDATA[<p>Nodejs:</p>
 <blockquote>
 <ul>
 <li>Jasmine做单元测试，</li>
@@ -108,15 +165,20 @@
 </ul>
 </blockquote>
 <p>AngularJS项目这都是标配了吧。看看就好，可能好多同学每天都在用着却没注意吧</p>
+<p>常用到的工具包，如socket.io, moment.js, underscore.js, async.js, express.js, bower.js, grunt.js, forever.js</p>
+<p>JS是单线程运行的这个事实上，这决定了JS在执行完一段代码之前无法执行包括回调函数在内的别的代码。也就是说，即使平行线程完成工作了，通知JS主线程执行回调函数了，回调函数也要等到JS主线程空闲时才能开始执行。以下就是这么一个例子。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Nodejs领域:</p>
+    <![CDATA[<p>Nodejs:</p>
 <blockquote>
 <ul>
 <li>Jasmine做单元测试，</li>
 <li>Karma自动化完成单元测试，</li>
 <li>Grunt启动Karma统一项目管理，</li>
-<li>Yeoman最后封装成一个项目原型模板，</li]]>
+<li>Yeoman最后封装成一个项目原型模板，</li>
+]]>
     </summary>
     
       <category term="nodejs" scheme="http://ristal90.info/tags/nodejs/"/>
@@ -470,6 +532,41 @@
     <![CDATA[<h2 id="函数作用域">函数作用域</h2>
 <p>所谓函数作用域就是说：-》变量在声明它们的函数体以及这个函数体嵌套的任意函数体内都是有定义的。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pr]]>
+    </summary>
+    
+      <category term="JavaScript" scheme="http://ristal90.info/tags/JavaScript/"/>
+    
+      <category term="WEB前端" scheme="http://ristal90.info/tags/WEB%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="JavaScript" scheme="http://ristal90.info/categories/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[typeof和instanceOf]]></title>
+    <link href="http://ristal90.info/2013/02/02/typeof%E5%92%8CinstanceOf/"/>
+    <id>http://ristal90.info/2013/02/02/typeof和instanceOf/</id>
+    <published>2013-02-02T08:44:24.000Z</published>
+    <updated>2015-02-02T08:54:51.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="typeof">typeof</h2>
+<p> typeof 是一个操作符,目的是检测一个变量是不是基本数据类型的变量</p>
+<p>对变量或值调用 typeof 运算符将返回下列值之一：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="literal">undefined</span> - 如果变量是 Undefined 类型的</div><div class="line"><span class="built_in">boolean</span> - 如果变量是 <span class="built_in">Boolean</span> 类型的</div><div class="line"><span class="built_in">number</span> - 如果变量是 <span class="built_in">Number</span> 类型的</div><div class="line"><span class="built_in">string</span> - 如果变量是 <span class="built_in">String</span> 类型的</div><div class="line">object - 如果变量是一种引用类型或 Null 类型的</div></pre></td></tr></table></figure>
+
+<p> 使用typeof操作符的时候,如果检测对象是函数,那么操作符返回”function” ,如果检测对象是正则表达式的时候,在Safari和Chrome中使用typeof的时候会错误的返回”function”,<br>其他的浏览器返回的是object.</p>
+<h2 id="instanceof">instanceof</h2>
+<p>instanceof主要的目的是检测引用类型,判断对象是Array,还是RegExp!</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array=<span class="keyword">new</span> <span class="built_in">Array</span>();  </div><div class="line"><span class="keyword">var</span> object=<span class="keyword">new</span> <span class="built_in">Object</span>();  </div><div class="line"><span class="keyword">var</span> regexp=<span class="keyword">new</span> <span class="built_in">RegExp</span>();  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span><span class="params">()</span></span>{};  </div><div class="line"><span class="keyword">var</span> func1=<span class="keyword">new</span> func();  </div><div class="line">  </div><div class="line">alert(array <span class="keyword">instanceof</span> <span class="built_in">Array</span>);  <span class="comment">//true  </span></div><div class="line">alert(object <span class="keyword">instanceof</span> <span class="built_in">Object</span>);  <span class="comment">//true  </span></div><div class="line">alert(regexp <span class="keyword">instanceof</span> <span class="built_in">RegExp</span>);  <span class="comment">//true  </span></div><div class="line">alert(func1 <span class="keyword">instanceof</span> func);  <span class="comment">//true</span></div></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>Object是所有对象的基类,所以在alert(array instanceof Object) 返回的结果也是true。</p>
+<h2 id="typeof_和instanceof">typeof  和instanceof</h2>
+<p>目的都是检测变量的类型,两个的区别在于typeof一般是检测的是基本数据类型,instanceof主要检测的是引用类型</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="typeof">typeof</h2>
+<p> typeof 是一个操作符,目的是检测一个变量是不是基本数据类型的变量</p>
+<p>对变量或值调用 typeof 运算符将返回下列值之一：</p>
+<figure class="highlight"><table>]]>
     </summary>
     
       <category term="JavaScript" scheme="http://ristal90.info/tags/JavaScript/"/>

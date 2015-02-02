@@ -1,0 +1,410 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>-->
+    <!--<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>-->
+    <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+    <meta charset="UTF-8">
+  
+    <title>apply和call方法 | 珠箔飘灯独自归</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="ristal">
+    
+    <meta name="description" content="apply用法一：函数的劫持与对象的复制
+对象的继承，大家一般的做法都是用复制方法：Object.extend
+prototype.js实现方法：
+123456Object.extend = function(destination, source) ...{    for (property in">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?d0d1c2928808e3b7657c859ed6bb7d11";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+
+  <body>
+    <header>
+      <div>
+    <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+    
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="珠箔飘灯独自归" title="珠箔飘灯独自归"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="珠箔飘灯独自归">珠箔飘灯独自归</a></h1>
+				<h2 class="blog-motto">程序媛，爱生活，爱汉服，爱武侠</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/02/02/apply和call方法/" title="apply和call方法" itemprop="url">apply和call方法</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://ristal90.info" title="ristal">ristal</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-02-02T08:55:40.000Z" itemprop="datePublished">2月 2 2015</time>
+    更新日期:<time datetime="2015-02-02T10:42:49.000Z" itemprop="dateModified">2月 2 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#apply用法一：函数的劫持与对象的复制"><span class="toc-number">1.</span> <span class="toc-text">apply用法一：函数的劫持与对象的复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call用法"><span class="toc-number">2.</span> <span class="toc-text">call用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply用法二（进阶用法）：利用Apply的参数数组化来提高性能"><span class="toc-number">3.</span> <span class="toc-text">apply用法二（进阶用法）：利用Apply的参数数组化来提高性能</span></a></li></ol>
+		</div>
+		
+		<h2 id="apply用法一：函数的劫持与对象的复制">apply用法一：函数的劫持与对象的复制</h2>
+<pre><code>对象的继承，大家一般的做法都是用复制方法：Object.<span class="built_in">extend</span>
+prototype.js实现方法：
+</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Object.extend = <span class="keyword">function</span>(destination, <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">  <span class="keyword">for</span> (property <span class="keyword">in</span> <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">    destination[property] = <span class="keyword">source</span>[property];  </div><div class="line">  }  </div><div class="line">  <span class="keyword">return</span> destination;  </div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>还有种不太常见的方法就是Function.apply<br>apply 方法能劫持对象的方法， 继承对象的属性。<br>示例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span>...</span>{   <span class="comment">//定义一个类，人类   </span></div><div class="line">    <span class="keyword">this</span>.name=name     <span class="comment">//名字   </span></div><div class="line">    <span class="keyword">this</span>.age=age       <span class="comment">//年龄  </span></div><div class="line">    <span class="keyword">this</span>.sayhello=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{alert(<span class="string">"hello"</span>)}  </div><div class="line">}  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span><span class="params">(name,age,grade,school)</span>...</span>{    <span class="comment">//学生类  </span></div><div class="line">    Person.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>)   </div><div class="line">    <span class="keyword">this</span>.grade=grade                  <span class="comment">//年级  </span></div><div class="line">    <span class="keyword">this</span>.school=school                    <span class="comment">//学校  </span></div><div class="line">}  </div><div class="line"><span class="keyword">var</span> p1=<span class="keyword">new</span> Person(<span class="string">"jake"</span>,<span class="number">10</span>)  </div><div class="line">p1.sayhello()  </div><div class="line"><span class="keyword">var</span> s1=<span class="keyword">new</span> Student(<span class="string">"tom"</span>,<span class="number">13</span>,<span class="number">6</span>,<span class="string">"清华小学"</span>)  </div><div class="line">s1.sayhello()</div></pre></td></tr></table></figure>
+
+<p><strong>分析:</strong> Person.apply(this,arguments);<br>this:在创建对象在这个时候代表的是student<br>arguments:是一个类数组,也就是[“tom”,13,6,”一年级”];<br>通俗一点讲就是:Student劫持了Person的sayhello方法，继承了Person的属性。也就是用Student类去执行Person类里面的内容,在Person这个类里面存在this.name等之类的语句,这样就将属性创建到了student对象里面</p>
+<h2 id="call用法">call用法</h2>
+<p>在Studen函数里面可以将apply中修改成如下:<br>Person.call(this,name,age);</p>
+<h2 id="apply用法二（进阶用法）：利用Apply的参数数组化来提高性能">apply用法二（进阶用法）：利用Apply的参数数组化来提高性能</h2>
+<blockquote>
+<ul>
+<li>找出数组中最大的元素:Math.max()<br>Math.max后面可以接任意个参数，最后返回所有参数中的最大值</li>
+</ul>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">alert(<span class="built_in">Math</span>.max(<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">6</span>))   <span class="comment">//9</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">1</span>];</div><div class="line">alert(<span class="built_in">Math</span>.max(arr));<span class="comment">//NAN !array形式不行</span></div></pre></td></tr></table></figure>
+
+<p>我们一般这么写(或者说我一直是这么写的)：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMax</span><span class="params">(arr)</span></span>{</div><div class="line">    <span class="keyword">var</span> arrLen=arr.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,ret=arr[<span class="number">0</span>];i&lt;arrLen;i++){</div><div class="line">        ret=<span class="built_in">Math</span>.max(ret,arr[i]);        </div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>应用apply:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMax2</span><span class="params">(arr)</span></span>{</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,arr);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong> apply方法将数组形式的arr解析成一个个参数传递给max函数，第一个参数是null是因为不需要劫持方法和继承属性。</p>
+<blockquote>
+<ul>
+<li><p>同理Math.min.apply（null,arr）</p>
+</li>
+<li><p>数组合并Array.prototype.push(),返回长度</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">var</span> arr1=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>);  </div><div class="line">    <span class="keyword">var</span> arr2=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"5"</span>,<span class="string">"6"</span>);  </div><div class="line">    </div><div class="line"> <span class="comment">//   alert(arr1.push(arr2));/长度是4</span></div><div class="line"> <span class="comment">//   alert(arr1);//1,2,3,[5,6]// 错误</span></div><div class="line"></div><div class="line">一般我们只能循环push：</div><div class="line">    <span class="keyword">var</span> arrLen=arr2.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arrLen;i++){</div><div class="line">        arr1.push(arr2[i]);</div><div class="line">    }</div><div class="line">    </div><div class="line">apply：</div><div class="line">    alert(arr1.push.apply(arr2));<span class="comment">//2</span></div><div class="line">    alert(arr1);<span class="comment">//1,2,3,5,6 //正确</span></div></pre></td></tr></table></figure>
+
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a><a href="/tags/WEB前端/">WEB前端</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a class="jiathis_button_twitter">Twitter</a>
+    <a class="jiathis_button_evernote">EverNote</a>
+    <a href="http://www.jiathis.com/share?uid=1501277" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+     ralateuid:{"tsina":"2095225084"},hideMore:false}
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/01/30/$$hashKey问题/"  title="$$hashKey问题">
+ <strong>NEXT:</strong><br/> 
+ <span>$$hashKey问题
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#apply用法一：函数的劫持与对象的复制"><span class="toc-number">1.</span> <span class="toc-text">apply用法一：函数的劫持与对象的复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call用法"><span class="toc-number">2.</span> <span class="toc-text">call用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply用法二（进阶用法）：利用Apply的参数数组化来提高性能"><span class="toc-number">3.</span> <span class="toc-text">apply用法二（进阶用法）：利用Apply的参数数组化来提高性能</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/AngularJS/" title="AngularJS">AngularJS<sup>6</sup></a></li>
+		
+			<li><a href="/categories/AngularJs/" title="AngularJs">AngularJs<sup>0</sup></a></li>
+		
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>4</sup></a></li>
+		
+			<li><a href="/categories/nodejs/" title="nodejs">nodejs<sup>2</sup></a></li>
+		
+			<li><a href="/categories/日志/" title="日志">日志<sup>1</sup></a></li>
+		
+			<li><a href="/categories/汉服生活/" title="汉服生活">汉服生活<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/AngularJS/" title="AngularJS">AngularJS<sup>6</sup></a></li>
+		
+			<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>0</sup></a></li>
+		
+			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>4</sup></a></li>
+		
+			<li><a href="/tags/WEB前端/" title="WEB前端">WEB前端<sup>10</sup></a></li>
+		
+			<li><a href="/tags/WEB前端开发/" title="WEB前端开发">WEB前端开发<sup>1</sup></a></li>
+		
+			<li><a href="/tags/nodejs/" title="nodejs">nodejs<sup>2</sup></a></li>
+		
+			<li><a href="/tags/传统文化/" title="传统文化">传统文化<sup>2</sup></a></li>
+		
+			<li><a href="/tags/开始/" title="开始">开始<sup>1</sup></a></li>
+		
+			<li><a href="/tags/我/" title="我">我<sup>1</sup></a></li>
+		
+			<li><a href="/tags/日记/" title="日记">日记<sup>1</sup></a></li>
+		
+			<li><a href="/tags/汉服/" title="汉服">汉服<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=6&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2095225084&verifier=57dda54a&dpc=1"></iframe>
+
+</aside>
+
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/2095225084" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/ristal" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://ristal90.info" target="_blank" title="ristal">ristal</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'null', 'null');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

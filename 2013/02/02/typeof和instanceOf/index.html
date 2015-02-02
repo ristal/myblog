@@ -7,13 +7,15 @@
     <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
     <meta charset="UTF-8">
   
-    <title>JavaScript的原型链继承 | 珠箔飘灯独自归</title>
+    <title>typeof和instanceOf | 珠箔飘灯独自归</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="ristal">
     
-    <meta name="description" content="首先申明，非原创，笔记里翻出来的。假设父类 parentScope 有如下成员属性 aString, aNumber, anArray, anObject, 以及 aFunction。子类 childScope 原型继承父类 parentScope，于是我们有：
-如果子 Scope 尝试去访问 pa">
+    <meta name="description" content="typeof
+ typeof 是一个操作符,目的是检测一个变量是不是基本数据类型的变量
+对变量或值调用 typeof 运算符将返回下列值之一：
+12345undefined - 如果变量是 Undefined 类型的boolean - 如果变量是 Boolean 类型的number - 如果变量是 ">
     
     
     
@@ -82,15 +84,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/30/JavaScript的原型链继承/" title="JavaScript的原型链继承" itemprop="url">JavaScript的原型链继承</a>
+      <a href="/2013/02/02/typeof和instanceOf/" title="typeof和instanceOf" itemprop="url">typeof和instanceOf</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://ristal90.info" title="ristal">ristal</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-30T08:48:30.000Z" itemprop="datePublished">1月 30 2015</time>
-    更新日期:<time datetime="2015-01-30T09:27:30.000Z" itemprop="dateModified">1月 30 2015</time>
+    <time datetime="2013-02-02T08:44:24.000Z" itemprop="datePublished">2月 2 2013</time>
+    更新日期:<time datetime="2015-02-02T08:54:51.000Z" itemprop="dateModified">2月 2 2015</time>
     
   </p>
 </header>
@@ -99,14 +101,22 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#typeof"><span class="toc-number">1.</span> <span class="toc-text">typeof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof"><span class="toc-number">2.</span> <span class="toc-text">instanceof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typeof_和instanceof"><span class="toc-number">3.</span> <span class="toc-text">typeof  和instanceof</span></a></li></ol>
 		</div>
 		
-		<p>首先申明，非原创，笔记里翻出来的。<br>假设父类 parentScope 有如下成员属性 aString, aNumber, anArray, anObject, 以及 aFunction。子类 childScope 原型继承父类 parentScope，于是我们有：</p>
-<p>如果子 Scope 尝试去访问 parentScope 中定义的属性，JavaScript 会先在子 Scope 中查找，如果没有该属性，则找它继承的 scope 去获取属性，如果继承的原型对象 parentScope 中都没有该属性，那么继续在它的原型中寻找，从原型链一直往上直到到达 rootScope。所以，下面的表达式结果都是 ture：<br>childScope.aString === ‘parent string’<br>childScope.anArray[1] === 20<br>childScope.anObject.property1 === ‘parent prop1’<br>childScope.aFunction() === ‘parent output’<br>假设我们执行下面的语句<br>childScope.aString = ‘child string’<br>原型链并没有被查询，反而是在 childScope 中增加了一个新属性 aString。这个新属性隐藏（覆盖）了 parentScope 中的同名属性。在下面我们讨论 ng-repeat 和 ng-include 时这个概念很重要。</p>
-<p>假设我们执行这个操作：<br>childScope.anArray[1] = ‘22’<br>childScope.anObject.property1 = ‘child prop1’<br>原型链被查询了，因为对象 anArray 和 anObject 在 childScope 中没有找到。它们在 parentScope 中被找到了，并且值被更新。childScope 中没有增加新的属性，也没有任何新的对象被创建。（注：在 JavaScript 中，array 和 function 都是对象）</p>
-<p>假设我们执行这个操作：<br>childScope.anArray = [100, 555]<br>childScope.anObject = { name: ‘Mark’, country: ‘USA’ }<br>原型链没有被查询，并且子 Scope 新加入了两个新的对象属性，它们隐藏（覆盖）了 parentScope 中的同名对象属性。</p>
-<p>应该可以总结<br>如果读取 childScope.propertyX，并且 childScope 有属性 propertyX，那么原型链没有被查询。<br>如果设置 childScope.propertyX，原型链不会被查询。<br>最后一种情况，<br>delete childScope.anArray<br>childScope.anArray[1] === 22  // true<br>我们从 childScope 删除了属性，则当我们再次访问该属性时，原型链会被查询。删除对象的属性会让来自原型链中的属性浮现出来。</p>
+		<h2 id="typeof">typeof</h2>
+<p> typeof 是一个操作符,目的是检测一个变量是不是基本数据类型的变量</p>
+<p>对变量或值调用 typeof 运算符将返回下列值之一：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="literal">undefined</span> - 如果变量是 Undefined 类型的</div><div class="line"><span class="built_in">boolean</span> - 如果变量是 <span class="built_in">Boolean</span> 类型的</div><div class="line"><span class="built_in">number</span> - 如果变量是 <span class="built_in">Number</span> 类型的</div><div class="line"><span class="built_in">string</span> - 如果变量是 <span class="built_in">String</span> 类型的</div><div class="line">object - 如果变量是一种引用类型或 Null 类型的</div></pre></td></tr></table></figure>
+
+<p> 使用typeof操作符的时候,如果检测对象是函数,那么操作符返回”function” ,如果检测对象是正则表达式的时候,在Safari和Chrome中使用typeof的时候会错误的返回”function”,<br>其他的浏览器返回的是object.</p>
+<h2 id="instanceof">instanceof</h2>
+<p>instanceof主要的目的是检测引用类型,判断对象是Array,还是RegExp!</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array=<span class="keyword">new</span> <span class="built_in">Array</span>();  </div><div class="line"><span class="keyword">var</span> object=<span class="keyword">new</span> <span class="built_in">Object</span>();  </div><div class="line"><span class="keyword">var</span> regexp=<span class="keyword">new</span> <span class="built_in">RegExp</span>();  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span><span class="params">()</span></span>{};  </div><div class="line"><span class="keyword">var</span> func1=<span class="keyword">new</span> func();  </div><div class="line">  </div><div class="line">alert(array <span class="keyword">instanceof</span> <span class="built_in">Array</span>);  <span class="comment">//true  </span></div><div class="line">alert(object <span class="keyword">instanceof</span> <span class="built_in">Object</span>);  <span class="comment">//true  </span></div><div class="line">alert(regexp <span class="keyword">instanceof</span> <span class="built_in">RegExp</span>);  <span class="comment">//true  </span></div><div class="line">alert(func1 <span class="keyword">instanceof</span> func);  <span class="comment">//true</span></div></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>Object是所有对象的基类,所以在alert(array instanceof Object) 返回的结果也是true。</p>
+<h2 id="typeof_和instanceof">typeof  和instanceof</h2>
+<p>目的都是检测变量的类型,两个的区别在于typeof一般是检测的是基本数据类型,instanceof主要检测的是引用类型</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -155,21 +165,13 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/01/30/Angular-Scope-Inheritance/" title="Angular_Scope_Inheritance">
+ <a href="/2014/08/30/js作用域及作用域链/" title="js作用域及作用域链">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Angular_Scope_Inheritance</span>
+  js作用域及作用域链</span>
 </a>
 </div>
 
-
-<div class="next">
-<a href="/2015/01/30/Node-js工具/"  title="Node.js工具">
- <strong>NEXT:</strong><br/> 
- <span>Node.js工具
-</span>
-</a>
-</div>
 
 </nav>
 
@@ -183,7 +185,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#typeof"><span class="toc-number">1.</span> <span class="toc-text">typeof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof"><span class="toc-number">2.</span> <span class="toc-text">instanceof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typeof_和instanceof"><span class="toc-number">3.</span> <span class="toc-text">typeof  和instanceof</span></a></li></ol>
   </div>
 
 <div id="asidepart">
