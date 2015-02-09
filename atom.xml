@@ -4,7 +4,7 @@
   <subtitle><![CDATA[程序媛，爱生活，爱汉服，爱武侠]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ristal90.info/"/>
-  <updated>2015-02-02T10:44:50.999Z</updated>
+  <updated>2015-02-09T03:07:59.574Z</updated>
   <id>http://ristal90.info/</id>
   
   <author>
@@ -15,19 +15,121 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[传统知识]]></title>
+    <link href="http://ristal90.info/2015/02/03/%E4%BC%A0%E7%BB%9F%E7%9F%A5%E8%AF%86/"/>
+    <id>http://ristal90.info/2015/02/03/传统知识/</id>
+    <published>2015-02-03T08:48:53.000Z</published>
+    <updated>2015-02-03T08:49:46.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="天干地支">天干地支</h2>
+<p>天 干 ： 甲(Jiǎ) 、 乙(Yǐ) 、 丙(Bǐnɡ) 、 丁(Dīnɡ) 、 戊(Wù) 、 己(Jǐ) 、 庚(Gēnɡ) 、 辛(Xīn) 、 壬(Rén) 、 癸(Guǐ)<br>地支： 子(Zǐ) 、 丑(Chǒu) 、 寅(Yín) 、 卯(Mǎo) 、 辰(Chén) 、 巳(Sì) 、 午(Wǔ) 、 未(Wèi) 、 申(Shēn) 、 酉(Yǒu) 、 戌(Xū) 、 亥(Hài) 。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="天干地支">天干地支</h2>
+<p>天 干 ： 甲(Jiǎ) 、 乙(Yǐ) 、 丙(Bǐnɡ) 、 丁(Dīnɡ) 、 戊(Wù) 、 己(Jǐ) 、 庚(Gēnɡ) 、 辛(Xīn) 、 壬(Rén) 、 癸(Guǐ)<br>地支： 子(Zǐ) 、 丑(Ch]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[karma+Jasmine在Webstorm测试]]></title>
+    <link href="http://ristal90.info/2015/02/03/karma-Jasmine%E5%9C%A8Webstorm%E6%B5%8B%E8%AF%95/"/>
+    <id>http://ristal90.info/2015/02/03/karma-Jasmine在Webstorm测试/</id>
+    <published>2015-02-03T03:36:26.000Z</published>
+    <updated>2015-02-03T03:36:26.000Z</updated>
+    <content type="html"><![CDATA[]]></content>
+    <summary type="html">
+    <![CDATA[]]>
+    </summary>
+    
+      <category term="AngularJS" scheme="http://ristal90.info/tags/AngularJS/"/>
+    
+      <category term="WEB前端" scheme="http://ristal90.info/tags/WEB%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="AngularJS" scheme="http://ristal90.info/categories/AngularJS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[directive指令机制]]></title>
+    <link href="http://ristal90.info/2015/02/03/directive%E6%8C%87%E4%BB%A4%E6%9C%BA%E5%88%B6/"/>
+    <id>http://ristal90.info/2015/02/03/directive指令机制/</id>
+    <published>2015-02-03T03:35:47.000Z</published>
+    <updated>2015-02-03T09:08:23.000Z</updated>
+    <content type="html"><![CDATA[<p>ng最强大也最麻烦的。</p>
+<h2 id="指令的使用：(通过使用指令的restrict属性控制)">指令的使用：(通过使用指令的restrict属性控制)</h2>
+<blockquote>
+<ul>
+<li><span my-dir="exp"></span> 作为标签的属性</li>
+<li><span class="my-dir: exp;"></span> 作为标签类属性的值</li>
+<li><my-dir></my-dir> 作为标签</li>
+<li><!-- directive: my-dir exp --> 作为注释</li>
+</ul>
+</blockquote>
+<h2 id="指令的执行过程">指令的执行过程</h2>
+<p><strong> compile阶段进行标签解析和变换，link阶段进行数据绑定等操作</strong></p>
+<h3 id="浏览器得到_HTML_字符串内容，解析得到_DOM_结构。">浏览器得到 HTML 字符串内容，解析得到 DOM 结构。</h3>
+<h3 id="ng_引入，把_DOM_结构扔给_$compile_函数处理：">ng 引入，把 DOM 结构扔给 $compile 函数处理：</h3>
+<pre><code>&gt;<span class="keyword">*</span> 找出 DOM 结构中有变量占位符
+&gt;<span class="keyword">*</span> 匹配找出 DOM 中包含的所有指令引用
+&gt;<span class="keyword">*</span> 把指令关联到 DOM 
+&gt;<span class="keyword">*</span> 关联到 DOM 的多个指令按权重排列
+&gt;<span class="keyword">*</span> 执行指令中的 compile 函数（改变 DOM 结构，返回 link 函数）
+&gt;<span class="keyword">*</span> 得到的所有 link 函数组成一个列表作为 $compile 函数的返回
+</code></pre><h3 id="执行_link_函数（连接模板的_scope）。">执行 link 函数（连接模板的 scope）。</h3>
+<pre><code>&gt;<span class="keyword">*</span> 控制器controller - 控制器的构造对象。这个控制器函数是在预编译阶段被执行的，并且它是共享的，其他指令可以通过它的名字得到（参考依赖属性[require attribute]）。这就使得指令间可以互相交流来扩大自己的能力。会传递给这个函数的参数有：
+&gt;<span class="keyword">*</span> $scope - 当前元素关联的作用域。
+&gt;<span class="keyword">*</span> $element - 当前元素
+&gt;<span class="keyword">*</span> $attrs - 当前元素的属性对象。
+&gt;<span class="keyword">*</span> $transclude - 模板链接功能前绑定到正确的模板作用域：function(cloneLinkingFn)。
+&gt;<span class="keyword">*</span> 请求require参数 - 请求将另一个控制器作为参数传入到当前链接函数。 这个请求需要传递被请求指令的控制器的名字。如果没有找到，就会触发一个错误。请求的名字可以加上下面两个前缀：
+&gt;<span class="keyword">*</span> ? - 不要触发错误，这只是一个可选的请求。
+&gt;<span class="keyword">*</span> ^ - 没找到的话，在父元素的controller里面也查找有没有。
+</code></pre><h2 id="实例">实例</h2>
+<h3 id="实例1：指令">实例1：<hello>指令</hello></h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appModule = angular.module('app', []);</div><div class="line">appModule.directive('hello', function() {</div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        restrict: 'E',</div><div class="line">        <span class="keyword">template</span>: '&lt;<span class="keyword">div</span>&gt;<span class="type">Hi</span> there&lt;/<span class="keyword">div</span>&gt;',</div><div class="line">        replace: <span class="literal">true</span></div><div class="line">    };</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>指令申明方式：<br><img src="http://dl2.iteye.com/upload/attachment/0087/7685/9b5589fe-121e-3e9e-8dd7-7c43d6a35c3c.png" alt="指令申明"></p>
+<h3 id="实例2：transclude（变换）">实例2：transclude（变换）</h3>
+<p>js:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appModule = angular.module('app', []);</div><div class="line">    appModule.directive('hello', function() {</div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        restrict: 'E',</div><div class="line">        <span class="keyword">template</span>: '&lt;<span class="keyword">div</span>&gt;<span class="type">Hi</span> there &lt;span ng-transclude&gt;&lt;/span&gt;&lt;/<span class="keyword">div</span>&gt;',</div><div class="line">        transclude: <span class="literal">true</span></div><div class="line">    };</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>html:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">hello</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="title">br</span>/&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="title">span</span>&gt;</span>原始的内容，<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">br</span>/&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="title">span</span>&gt;</span>还会在这里。<span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="title">hello</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">hello</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="title">hello</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>transclude的作用可以简化地理解成：把<hello>标签替换成我们所编写的HTML模板，但是<hello>标签内部的内容<strong>保持不变</strong>。</hello></hello></p>
+<h3 id="实例3：compile和link">实例3：compile和link</h3>
+<p><strong> 指令的本质就是一个替换的过程。compile阶段进行标签解析和变换，link阶段进行数据绑定等操作</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>ng最强大也最麻烦的。</p>
+<h2 id="指令的使用：(通过使用指令的restrict属性控制)">指令的使用：(通过使用指令的restrict属性控制)</h2>
+<blockquote>
+<ul>
+<li><span my-dir="exp"></span> 作为]]>
+    </summary>
+    
+      <category term="AngularJS" scheme="http://ristal90.info/tags/AngularJS/"/>
+    
+      <category term="WEB前端" scheme="http://ristal90.info/tags/WEB%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="AngularJS" scheme="http://ristal90.info/categories/AngularJS/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[apply和call方法]]></title>
     <link href="http://ristal90.info/2015/02/02/apply%E5%92%8Ccall%E6%96%B9%E6%B3%95/"/>
     <id>http://ristal90.info/2015/02/02/apply和call方法/</id>
     <published>2015-02-02T08:55:40.000Z</published>
-    <updated>2015-02-02T10:44:46.000Z</updated>
+    <updated>2015-02-03T02:26:44.000Z</updated>
     <content type="html"><![CDATA[<h2 id="apply用法一：函数的劫持与对象的复制">apply用法一：函数的劫持与对象的复制</h2>
 <p>对象的继承，大家一般的做法都是用复制方法：Object.extend<br>prototype.js实现方法：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Object.extend = <span class="keyword">function</span>(destination, <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">  <span class="keyword">for</span> (property <span class="keyword">in</span> <span class="keyword">source</span>) <span class="keyword">...</span>{  </div><div class="line">    destination[property] = <span class="keyword">source</span>[property];  </div><div class="line">  }  </div><div class="line">  <span class="keyword">return</span> destination;  </div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>还有种不太常见的方法就是Function.apply<br>apply 方法能劫持对象的方法， 继承对象的属性。<br>示例：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span>...</span>{   <span class="comment">//定义一个类，人类   </span></div><div class="line">    <span class="keyword">this</span>.name=name     <span class="comment">//名字   </span></div><div class="line">    <span class="keyword">this</span>.age=age       <span class="comment">//年龄  </span></div><div class="line">    <span class="keyword">this</span>.sayhello=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{alert(<span class="string">"hello"</span>)}  </div><div class="line">}  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span><span class="params">(name,age,grade,school)</span>...</span>{    <span class="comment">//学生类  </span></div><div class="line">    Person.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>)   </div><div class="line">    <span class="keyword">this</span>.grade=grade                  <span class="comment">//年级  </span></div><div class="line">    <span class="keyword">this</span>.school=school                    <span class="comment">//学校  </span></div><div class="line">}  </div><div class="line"><span class="keyword">var</span> p1=<span class="keyword">new</span> Person(<span class="string">"jake"</span>,<span class="number">10</span>)  </div><div class="line">p1.sayhello()  </div><div class="line"><span class="keyword">var</span> s1=<span class="keyword">new</span> Student(<span class="string">"tom"</span>,<span class="number">13</span>,<span class="number">6</span>,<span class="string">"清华小学"</span>)  </div><div class="line">s1.sayhello()</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span>...</span>{   <span class="comment">//定义一个类，人类   </span></div><div class="line">    <span class="keyword">this</span>.name=name     <span class="comment">//名字   </span></div><div class="line">    <span class="keyword">this</span>.age=age       <span class="comment">//年龄  </span></div><div class="line">    <span class="keyword">this</span>.sayhello=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{alert(<span class="string">"hello"</span>)}  </div><div class="line">}  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span><span class="params">(name,age,grade,school)</span>...</span>{    <span class="comment">//学生类  </span></div><div class="line">    Person.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>)   </div><div class="line">    <span class="keyword">this</span>.grade=grade                  <span class="comment">//年级  </span></div><div class="line">    <span class="keyword">this</span>.school=school                    <span class="comment">//学校  </span></div><div class="line">}  </div><div class="line"><span class="keyword">var</span> p1=<span class="keyword">new</span> Person(<span class="string">"jake"</span>,<span class="number">10</span>)  </div><div class="line">p1.sayhello()   </div><div class="line"><span class="keyword">var</span> s1=<span class="keyword">new</span> Student(<span class="string">"tom"</span>,<span class="number">13</span>,<span class="number">6</span>,<span class="string">"清华小学"</span>)  </div><div class="line">s1.sayhello()</div></pre></td></tr></table></figure>
 
-<p><strong>分析:</strong> Person.apply(this,arguments);<br>this:在创建对象在这个时候代表的是student<br>arguments:是一个类数组,也就是[“tom”,13,6,”一年级”];<br>通俗一点讲就是:Student劫持了Person的sayhello方法，继承了Person的属性。也就是用Student类去执行Person类里面的内容,在Person这个类里面存在this.name等之类的语句,这样就将属性创建到了student对象里面</p>
+<p><strong>分析:</strong> Person.apply(this,arguments);<br>this:在创建对象在这个时候代表的是student<br>arguments:是一个类数组,也就是[“tom”,13,6,”清华小学”];<br>通俗一点讲就是:Student劫持了Person的sayhello方法，继承了Person的属性。也就是用Student类去执行Person类里面的内容,在Person这个类里面存在this.name等之类的语句,这样就将属性创建到了student对象里面</p>
 <h2 id="call用法">call用法</h2>
 <p>在Studen函数里面可以将apply中修改成如下:<br>Person.call(this,name,age);</p>
 <h2 id="apply用法二（进阶用法）：利用Apply的参数数组化来提高性能">apply用法二（进阶用法）：利用Apply的参数数组化来提高性能</h2>

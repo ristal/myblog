@@ -1,0 +1,436 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>-->
+    <!--<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>-->
+    <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+    <meta charset="UTF-8">
+  
+    <title>directive指令机制 | 珠箔飘灯独自归</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="ristal">
+    
+    <meta name="description" content="ng最强大也最麻烦的。
+指令的使用：(通过使用指令的restrict属性控制)
+
+
+ 作为标签的属性
+ 作为标签类属性的值
+ 作为标签
+ 作为注释
+
+
+指令的执行过程
+ compile阶段进行标签解析和变换，link阶段进行数据绑定等操作
+浏览器得到 HTML 字符串内容，解析得到 DOM 结构。
+">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?d0d1c2928808e3b7657c859ed6bb7d11";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+
+  <body>
+    <header>
+      <div>
+    <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+    
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="珠箔飘灯独自归" title="珠箔飘灯独自归"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="珠箔飘灯独自归">珠箔飘灯独自归</a></h1>
+				<h2 class="blog-motto">程序媛，爱生活，爱汉服，爱武侠</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/02/03/directive指令机制/" title="directive指令机制" itemprop="url">directive指令机制</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://ristal90.info" title="ristal">ristal</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-02-03T03:35:47.000Z" itemprop="datePublished">2月 3 2015</time>
+    更新日期:<time datetime="2015-02-03T09:08:23.000Z" itemprop="dateModified">2月 3 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#指令的使用：(通过使用指令的restrict属性控制)"><span class="toc-number">1.</span> <span class="toc-text">指令的使用：(通过使用指令的restrict属性控制)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指令的执行过程"><span class="toc-number">2.</span> <span class="toc-text">指令的执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器得到_HTML_字符串内容，解析得到_DOM_结构。"><span class="toc-number">2.1.</span> <span class="toc-text">浏览器得到 HTML 字符串内容，解析得到 DOM 结构。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ng_引入，把_DOM_结构扔给_$compile_函数处理："><span class="toc-number">2.2.</span> <span class="toc-text">ng 引入，把 DOM 结构扔给 $compile 函数处理：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行_link_函数（连接模板的_scope）。"><span class="toc-number">2.3.</span> <span class="toc-text">执行 link 函数（连接模板的 scope）。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例1：指令"><span class="toc-number">3.1.</span> <span class="toc-text">实例1：指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例2：transclude（变换）"><span class="toc-number">3.2.</span> <span class="toc-text">实例2：transclude（变换）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例3：compile和link"><span class="toc-number">3.3.</span> <span class="toc-text">实例3：compile和link</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>ng最强大也最麻烦的。</p>
+<h2 id="指令的使用：(通过使用指令的restrict属性控制)">指令的使用：(通过使用指令的restrict属性控制)</h2>
+<blockquote>
+<ul>
+<li><span my-dir="exp"></span> 作为标签的属性</li>
+<li><span class="my-dir: exp;"></span> 作为标签类属性的值</li>
+<li><my-dir></my-dir> 作为标签</li>
+<li><!-- directive: my-dir exp --> 作为注释</li>
+</ul>
+</blockquote>
+<h2 id="指令的执行过程">指令的执行过程</h2>
+<p><strong> compile阶段进行标签解析和变换，link阶段进行数据绑定等操作</strong></p>
+<h3 id="浏览器得到_HTML_字符串内容，解析得到_DOM_结构。">浏览器得到 HTML 字符串内容，解析得到 DOM 结构。</h3>
+<h3 id="ng_引入，把_DOM_结构扔给_$compile_函数处理：">ng 引入，把 DOM 结构扔给 $compile 函数处理：</h3>
+<pre><code>&gt;<span class="keyword">*</span> 找出 DOM 结构中有变量占位符
+&gt;<span class="keyword">*</span> 匹配找出 DOM 中包含的所有指令引用
+&gt;<span class="keyword">*</span> 把指令关联到 DOM 
+&gt;<span class="keyword">*</span> 关联到 DOM 的多个指令按权重排列
+&gt;<span class="keyword">*</span> 执行指令中的 compile 函数（改变 DOM 结构，返回 link 函数）
+&gt;<span class="keyword">*</span> 得到的所有 link 函数组成一个列表作为 $compile 函数的返回
+</code></pre><h3 id="执行_link_函数（连接模板的_scope）。">执行 link 函数（连接模板的 scope）。</h3>
+<pre><code>&gt;<span class="keyword">*</span> 控制器controller - 控制器的构造对象。这个控制器函数是在预编译阶段被执行的，并且它是共享的，其他指令可以通过它的名字得到（参考依赖属性[require attribute]）。这就使得指令间可以互相交流来扩大自己的能力。会传递给这个函数的参数有：
+&gt;<span class="keyword">*</span> $scope - 当前元素关联的作用域。
+&gt;<span class="keyword">*</span> $element - 当前元素
+&gt;<span class="keyword">*</span> $attrs - 当前元素的属性对象。
+&gt;<span class="keyword">*</span> $transclude - 模板链接功能前绑定到正确的模板作用域：function(cloneLinkingFn)。
+&gt;<span class="keyword">*</span> 请求require参数 - 请求将另一个控制器作为参数传入到当前链接函数。 这个请求需要传递被请求指令的控制器的名字。如果没有找到，就会触发一个错误。请求的名字可以加上下面两个前缀：
+&gt;<span class="keyword">*</span> ? - 不要触发错误，这只是一个可选的请求。
+&gt;<span class="keyword">*</span> ^ - 没找到的话，在父元素的controller里面也查找有没有。
+</code></pre><h2 id="实例">实例</h2>
+<h3 id="实例1：指令">实例1：<hello>指令</hello></h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appModule = angular.module('app', []);</div><div class="line">appModule.directive('hello', function() {</div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        restrict: 'E',</div><div class="line">        <span class="keyword">template</span>: '&lt;<span class="keyword">div</span>&gt;<span class="type">Hi</span> there&lt;/<span class="keyword">div</span>&gt;',</div><div class="line">        replace: <span class="literal">true</span></div><div class="line">    };</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>指令申明方式：<br><img src="http://dl2.iteye.com/upload/attachment/0087/7685/9b5589fe-121e-3e9e-8dd7-7c43d6a35c3c.png" alt="指令申明"></p>
+<h3 id="实例2：transclude（变换）">实例2：transclude（变换）</h3>
+<p>js:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appModule = angular.module('app', []);</div><div class="line">    appModule.directive('hello', function() {</div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        restrict: 'E',</div><div class="line">        <span class="keyword">template</span>: '&lt;<span class="keyword">div</span>&gt;<span class="type">Hi</span> there &lt;span ng-transclude&gt;&lt;/span&gt;&lt;/<span class="keyword">div</span>&gt;',</div><div class="line">        transclude: <span class="literal">true</span></div><div class="line">    };</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>html:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">hello</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="title">br</span>/&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="title">span</span>&gt;</span>原始的内容，<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">br</span>/&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="title">span</span>&gt;</span>还会在这里。<span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="title">hello</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">hello</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="title">hello</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>transclude的作用可以简化地理解成：把<hello>标签替换成我们所编写的HTML模板，但是<hello>标签内部的内容<strong>保持不变</strong>。</hello></hello></p>
+<h3 id="实例3：compile和link">实例3：compile和link</h3>
+<p><strong> 指令的本质就是一个替换的过程。compile阶段进行标签解析和变换，link阶段进行数据绑定等操作</strong></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/AngularJS/">AngularJS</a><a href="/tags/WEB前端/">WEB前端</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/AngularJS/">AngularJS</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a class="jiathis_button_twitter">Twitter</a>
+    <a class="jiathis_button_evernote">EverNote</a>
+    <a href="http://www.jiathis.com/share?uid=1501277" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+     ralateuid:{"tsina":"2095225084"},hideMore:false}
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/02/03/karma-Jasmine在Webstorm测试/" title="karma+Jasmine在Webstorm测试">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  karma+Jasmine在Webstorm测试</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/02/02/apply和call方法/"  title="apply和call方法">
+ <strong>NEXT:</strong><br/> 
+ <span>apply和call方法
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#指令的使用：(通过使用指令的restrict属性控制)"><span class="toc-number">1.</span> <span class="toc-text">指令的使用：(通过使用指令的restrict属性控制)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指令的执行过程"><span class="toc-number">2.</span> <span class="toc-text">指令的执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器得到_HTML_字符串内容，解析得到_DOM_结构。"><span class="toc-number">2.1.</span> <span class="toc-text">浏览器得到 HTML 字符串内容，解析得到 DOM 结构。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ng_引入，把_DOM_结构扔给_$compile_函数处理："><span class="toc-number">2.2.</span> <span class="toc-text">ng 引入，把 DOM 结构扔给 $compile 函数处理：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行_link_函数（连接模板的_scope）。"><span class="toc-number">2.3.</span> <span class="toc-text">执行 link 函数（连接模板的 scope）。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例1：指令"><span class="toc-number">3.1.</span> <span class="toc-text">实例1：指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例2：transclude（变换）"><span class="toc-number">3.2.</span> <span class="toc-text">实例2：transclude（变换）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例3：compile和link"><span class="toc-number">3.3.</span> <span class="toc-text">实例3：compile和link</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/AngularJS/" title="AngularJS">AngularJS<sup>8</sup></a></li>
+		
+			<li><a href="/categories/AngularJs/" title="AngularJs">AngularJs<sup>0</sup></a></li>
+		
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>4</sup></a></li>
+		
+			<li><a href="/categories/nodejs/" title="nodejs">nodejs<sup>2</sup></a></li>
+		
+			<li><a href="/categories/日志/" title="日志">日志<sup>1</sup></a></li>
+		
+			<li><a href="/categories/汉服生活/" title="汉服生活">汉服生活<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/AngularJS/" title="AngularJS">AngularJS<sup>8</sup></a></li>
+		
+			<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>0</sup></a></li>
+		
+			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>4</sup></a></li>
+		
+			<li><a href="/tags/WEB前端/" title="WEB前端">WEB前端<sup>12</sup></a></li>
+		
+			<li><a href="/tags/WEB前端开发/" title="WEB前端开发">WEB前端开发<sup>1</sup></a></li>
+		
+			<li><a href="/tags/nodejs/" title="nodejs">nodejs<sup>2</sup></a></li>
+		
+			<li><a href="/tags/传统文化/" title="传统文化">传统文化<sup>2</sup></a></li>
+		
+			<li><a href="/tags/开始/" title="开始">开始<sup>1</sup></a></li>
+		
+			<li><a href="/tags/我/" title="我">我<sup>1</sup></a></li>
+		
+			<li><a href="/tags/日记/" title="日记">日记<sup>1</sup></a></li>
+		
+			<li><a href="/tags/汉服/" title="汉服">汉服<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=6&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2095225084&verifier=57dda54a&dpc=1"></iframe>
+
+</aside>
+
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/2095225084" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/ristal" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://ristal90.info" target="_blank" title="ristal">ristal</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'null', 'null');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
